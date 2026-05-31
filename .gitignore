@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+data/chats/
+data/bands_cache.pkl
+*.egg-info/
+dist/
+build/
+*.dmg
