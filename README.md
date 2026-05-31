@@ -13,7 +13,11 @@ This repo is built **100% free**: static HTML/CSS/JS, no API keys, no paid hosti
 1. Push this repo to GitHub.
 2. Go to **Settings → Pages → Build and deployment**.
 3. Set **Source** to **GitHub Actions** (the included workflow deploys the `docs/` folder).
-4. After the workflow runs, open `https://<username>.github.io/<repo>/`.
+4. After the workflow runs, open **https://abasu9.github.io/NextStep.ai/**
+
+### Sample data in this repo
+
+**`docs/data/sample_patients.json` is committed to git** (~200 synthetic patients). It is **not real clinical data** — safe for public GitHub and Pages. See [docs/data/README.md](docs/data/README.md).
 
 Or run locally:
 
