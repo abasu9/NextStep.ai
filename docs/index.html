@@ -182,34 +182,34 @@
           <p class="section-sub gate-sub">Concept embedding, answerability checks, and validated fall-risk instrument selection — before any grounded narrative.</p>
         </div>
         <div class="gate-panel fade-in">
-        <div class="gate-track" role="list">
-          <div class="gate-step is-pass" role="listitem">
-            <div class="gate-rail"><span class="gate-dot" aria-hidden="true"></span></div>
-            <p class="gate-text">Question received</p>
-            <span class="gate-tag">FALL RISK SCORE</span>
+          <ol class="gate-track">
+            <li class="gate-step is-pass">
+              <span class="gate-dot" aria-hidden="true"></span>
+              <p class="gate-text">Question received</p>
+              <span class="gate-tag">FALL RISK SCORE</span>
+            </li>
+            <li class="gate-step is-pass">
+              <span class="gate-dot" aria-hidden="true"></span>
+              <p class="gate-text">Concept gate — in distribution</p>
+              <span class="gate-tag">FALL ASSESSMENT</span>
+            </li>
+            <li class="gate-step is-neutral">
+              <span class="gate-dot" aria-hidden="true"></span>
+              <p class="gate-text">Instrument picker — Morse Fall Scale</p>
+              <span class="gate-tag">SURVEY</span>
+            </li>
+            <li class="gate-step is-block">
+              <span class="gate-dot" aria-hidden="true"></span>
+              <p class="gate-text">Missing inputs — gait, mental status</p>
+              <span class="gate-tag">✕ GATHER</span>
+            </li>
+          </ol>
+          <div class="verdict-meter">
+            <div class="meter-label">Evidence completeness (30d window)</div>
+            <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+            <div class="meter-stats"><span>0%</span><span class="meter-high">72% — not sufficient</span></div>
+            <div class="verdict-label kill"><span class="verdict-dot" aria-hidden="true"></span>GATHER — DO NOT SCORE</div>
           </div>
-          <div class="gate-step is-pass" role="listitem">
-            <div class="gate-rail"><span class="gate-dot" aria-hidden="true"></span></div>
-            <p class="gate-text">Concept gate — in distribution</p>
-            <span class="gate-tag">FALL ASSESSMENT</span>
-          </div>
-          <div class="gate-step is-neutral" role="listitem">
-            <div class="gate-rail"><span class="gate-dot" aria-hidden="true"></span></div>
-            <p class="gate-text">Instrument picker — Morse Fall Scale</p>
-            <span class="gate-tag">SURVEY</span>
-          </div>
-          <div class="gate-step is-block" role="listitem">
-            <div class="gate-rail"><span class="gate-dot" aria-hidden="true"></span></div>
-            <p class="gate-text">Missing inputs — gait, mental status</p>
-            <span class="gate-tag">✕ GATHER</span>
-          </div>
-        </div>
-        <div class="verdict-meter">
-          <div class="meter-label">Evidence completeness (30d window)</div>
-          <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
-          <div class="meter-stats"><span>0%</span><span class="meter-high">72% — not sufficient</span></div>
-          <div class="verdict-label kill"><span class="verdict-dot" aria-hidden="true"></span>GATHER — DO NOT SCORE</div>
-        </div>
         </div>
       </div>
     </div>

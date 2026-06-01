@@ -897,69 +897,65 @@ nav {
 .gate-panel {
   background: var(--ink-card);
   border: 1px solid rgba(56, 189, 248, 0.12);
-  padding: 24px 24px 22px 20px;
+  padding: 24px;
   align-self: center;
 }
 
 .gate-track {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin-bottom: 22px;
+  --gate-rail-x: 14px;
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
   position: relative;
+}
+
+/* Single vertical rail — centered under dots */
+.gate-track::before {
+  content: '';
+  position: absolute;
+  left: var(--gate-rail-x);
+  top: 20px;
+  bottom: 20px;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    var(--green) 0%,
+    var(--green) 34%,
+    var(--ink-light) 34%,
+    var(--ink-light) 66%,
+    var(--red) 66%,
+    var(--red) 100%
+  );
+  border-radius: 1px;
+  z-index: 0;
 }
 
 .gate-step {
   display: grid;
-  grid-template-columns: 28px minmax(0, 1fr) 128px;
-  column-gap: 14px;
+  grid-template-columns: 28px minmax(0, 1fr) 132px;
+  column-gap: 16px;
   align-items: center;
-  min-height: 52px;
+  min-height: 48px;
   padding: 10px 0;
-}
-
-.gate-rail {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
-  align-self: stretch;
-  min-height: 52px;
-}
-
-.gate-rail::after {
-  content: '';
-  position: absolute;
-  top: calc(50% + 8px);
-  left: 50%;
-  width: 2px;
-  height: calc(100% - 8px);
-  transform: translateX(-50%);
-  background: var(--ink-light);
-  z-index: 0;
-}
-
-.gate-step:last-child .gate-rail::after {
-  display: none;
+  z-index: 1;
 }
 
 .gate-dot {
-  width: 12px;
-  height: 12px;
+  grid-column: 1;
+  justify-self: center;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   border: 2px solid var(--ink-light);
-  background: var(--ink-mid);
-  position: relative;
-  z-index: 1;
+  background: var(--ink-card);
+  box-sizing: content-box;
   flex-shrink: 0;
 }
 
 .gate-step.is-pass .gate-dot {
   border-color: var(--green);
-  background: var(--green);
-}
-
-.gate-step.is-pass .gate-rail::after {
   background: var(--green);
 }
 
@@ -978,23 +974,28 @@ nav {
 }
 
 .gate-text {
+  grid-column: 2;
   font-size: 11px;
-  line-height: 1.5;
+  line-height: 1.45;
   color: var(--text);
   margin: 0;
+  align-self: center;
 }
 
 .gate-tag {
+  grid-column: 3;
   font-size: 9px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 6px 8px;
+  padding: 7px 10px;
   border: 1px solid rgba(56, 189, 248, 0.35);
   color: var(--accent-light);
   text-align: center;
   white-space: nowrap;
   justify-self: end;
-  width: 128px;
+  align-self: center;
+  width: 100%;
+  max-width: 132px;
   box-sizing: border-box;
 }
 
@@ -1748,16 +1749,34 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .gate-track::before {
+    top: 16px;
+    bottom: 16px;
+  }
+
   .gate-step {
     grid-template-columns: 28px 1fr;
-    row-gap: 8px;
+    grid-template-areas:
+      'dot text'
+      '. tag';
+    row-gap: 6px;
+    padding: 12px 0;
+  }
+
+  .gate-dot {
+    grid-area: dot;
+  }
+
+  .gate-text {
+    grid-area: text;
   }
 
   .gate-tag {
-    grid-column: 2;
+    grid-area: tag;
+    grid-column: auto;
     justify-self: start;
+    max-width: none;
     width: auto;
-    max-width: 100%;
   }
 
   .evrow {
