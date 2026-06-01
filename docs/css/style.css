@@ -1087,57 +1087,6 @@ nav {
   border-bottom: none;
 }
 
-/* Team */
-.team-section {
-  padding: 120px 48px;
-  background: var(--ink-deep);
-}
-
-.team-section .section-title {
-  margin-bottom: 48px;
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.team-card {
-  background: var(--ink-card);
-  border: 1px solid rgba(56, 189, 248, 0.1);
-  overflow: hidden;
-  transition: border-color 0.3s, transform 0.3s;
-}
-
-.team-card:hover {
-  border-color: rgba(56, 189, 248, 0.35);
-  transform: translateY(-4px);
-}
-
-.team-card img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  background: var(--ink-light);
-}
-
-.team-card-body {
-  padding: 18px 16px 20px;
-  text-align: center;
-}
-
-.team-card h3 {
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--text);
-  margin: 0 0 6px;
-}
-
 .verdict-meter {
   margin-top: 24px;
   background: var(--ink-card);
@@ -1728,14 +1677,8 @@ footer {
   .how,
   .verdict,
   .demo,
-  .team-section,
   footer {
     padding: 72px 20px;
-  }
-
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
   }
 
   .problem-grid,

@@ -10,13 +10,6 @@ PPTX = ROOT / "EvidenceFirst_CAIDF.pptx"
 OUT = ROOT / "docs" / "assets" / "deck"
 
 # ppt/media file → slide meaning (avoid blind fig-N copies; slide 17 has stock headshots)
-TEAM_IMAGES: dict[str, str] = {
-    "luis-cisneros.png": "ppt/media/image10.png",
-    # abhishek-basu.jpg is added manually (not from deck)
-    "lawrence-salud.png": "ppt/media/image12.png",
-    "amy-wang.png": "ppt/media/image6.png",
-}
-
 SLIDE_IMAGES: dict[str, str] = {
     "deck-agentic-loop.png": "ppt/media/image4.png",  # slide 4 — agentic workflow
     "deck-impact.png": "ppt/media/image8.png",  # slide 3 — impact
@@ -30,15 +23,8 @@ def main() -> None:
     if not PPTX.exists():
         print(f"Missing {PPTX}")
         return
-    team_out = ROOT / "docs" / "assets" / "team"
     OUT.mkdir(parents=True, exist_ok=True)
-    team_out.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(PPTX) as z:
-        for dest_name, src in TEAM_IMAGES.items():
-            data = z.read(src)
-            path = team_out / dest_name
-            path.write_bytes(data)
-            print(f"wrote {path.relative_to(ROOT)} ({len(data) // 1024} KB)")
         for dest_name, src in SLIDE_IMAGES.items():
             data = z.read(src)
             path = OUT / dest_name
