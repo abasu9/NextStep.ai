@@ -16,7 +16,7 @@ A clinical AI gate that decides whether a question *can* be answered **before** 
 
 ## Concept (from the deck)
 
-![Judge–Act workflow](docs/assets/fig-6.png)
+![Agentic workflow](docs/assets/deck/deck-agentic-loop.png)
 
 **Problem:** Time-strained providers struggle to navigate the EHR to find, synthesize, and act on data gaps essential for safe multidisciplinary care after a fall.
 
@@ -31,7 +31,7 @@ A clinical AI gate that decides whether a question *can* be answered **before** 
 
 **Impact:** Safer care · Cleaner reports and claims · One source of truth.
 
-![Knowledge graph by author_type](docs/assets/fig-14.png)
+![Knowledge graph by author_type](docs/assets/deck/deck-knowledge-graph.png)
 
 *Auditability: every fact traceable to its discipline before the model speaks (deck).*
 
@@ -60,10 +60,9 @@ If you see the wrong (black coaching) site, follow **[DEPLOY.md](DEPLOY.md)** �
 |-------|-------------|
 | [EvidenceFirst_CAIDF.pptx](EvidenceFirst_CAIDF.pptx) | Full hackathon deck (root) |
 | [docs/assets/EvidenceFirst_CAIDF.pptx](docs/assets/EvidenceFirst_CAIDF.pptx) | Same deck (served on GitHub Pages) |
-| [docs/assets/fig-6.png](docs/assets/fig-6.png) | Judge → Act |
-| [docs/assets/fig-10.png](docs/assets/fig-10.png) | Verdict distribution |
-| [docs/assets/fig-14.png](docs/assets/fig-14.png) | Knowledge graph |
-| [docs/assets/fig-16.png](docs/assets/fig-16.png) | Data + tools / stack |
+| [docs/assets/deck/deck-agentic-loop.png](docs/assets/deck/deck-agentic-loop.png) | Agentic workflow (slide 4) |
+| Solution section bars | Verdict distribution (illustrative · deck slide 10) |
+| [docs/assets/deck/deck-knowledge-graph.png](docs/assets/deck/deck-knowledge-graph.png) | Knowledge graph (slide 16) |
 
 Regenerate web images from the deck:
 
@@ -77,7 +76,14 @@ python3 scripts/extract_ppt_assets.py
 
 **Team 9 — Sonic Death Monkeys**
 
-Luis Cisneros · Abhishek Basu · Lawrence Salud · Amy Y. Wang
+| | |
+|---|---|
+| Luis Cisneros | ![Luis](docs/assets/team/luis-cisneros.png) |
+| Abhishek Basu | ![Abhishek](docs/assets/team/abhishek-basu.png) |
+| Lawrence Salud | ![Lawrence](docs/assets/team/lawrence-salud.png) |
+| Amy Y. Wang | ![Amy](docs/assets/team/amy-wang.png) |
+
+On the site: [Meet the team](https://abasu9.github.io/NextStep.ai/#team)
 
 ---
 

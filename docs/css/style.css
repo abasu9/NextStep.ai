@@ -713,6 +713,166 @@ nav {
   font-size: 11px;
 }
 
+.feasibility-panel,
+.verdict-distribution {
+  background: var(--ink-card);
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  padding: 28px 24px;
+}
+
+.panel-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.panel-note {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 18px;
+  line-height: 1.7;
+}
+
+.instrument-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.instrument-chip {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 8px 12px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--accent-light);
+  background: rgba(56, 189, 248, 0.06);
+}
+
+.instrument-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.flow-step {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.flow-step:last-of-type {
+  border-bottom: none;
+}
+
+.flow-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.flow-step p {
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+.flow-step em {
+  color: var(--text);
+  font-style: normal;
+  display: block;
+  margin-top: 2px;
+}
+
+.flow-step-accent .flow-num {
+  border-color: var(--accent);
+  background: rgba(56, 189, 248, 0.12);
+}
+
+.flow-step-verdict .flow-num {
+  border-color: #fbbf24;
+  color: #fbbf24;
+}
+
+.flow-arrow {
+  text-align: center;
+  color: var(--accent-dim);
+  font-size: 14px;
+  line-height: 1;
+  padding-left: 8px;
+}
+
+.verdict-distribution {
+  margin-top: 40px;
+  max-width: 640px;
+}
+
+.dist-row {
+  display: grid;
+  grid-template-columns: 72px 1fr 40px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.dist-name {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+}
+
+.dist-name.proceed {
+  color: var(--green);
+}
+
+.dist-name.gather {
+  color: var(--accent-light);
+}
+
+.dist-name.abstain {
+  color: #fbbf24;
+}
+
+.dist-bar {
+  height: 8px;
+  background: var(--ink-light);
+  overflow: hidden;
+}
+
+.dist-fill {
+  height: 100%;
+  transition: width 1.2s ease;
+}
+
+.dist-fill.proceed {
+  background: var(--green);
+}
+
+.dist-fill.gather {
+  background: var(--accent);
+}
+
+.dist-fill.abstain {
+  background: #fbbf24;
+}
+
+.dist-pct {
+  font-size: 10px;
+  color: var(--text-dim);
+  text-align: right;
+}
+
 /* Gate panel — fixed alignment (deck slide 14) */
 .gate-section {
   display: grid;
@@ -873,7 +1033,89 @@ nav {
   line-height: 2;
   color: var(--text-dim);
   padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 0.04);
+}
+
+.stack-panel {
+  background: var(--ink-card);
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  padding: 28px 24px;
+}
+
+.stack-title {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.stack-list {
+  list-style: none;
+  margin: 0;
+}
+
+.stack-list li {
+  font-size: 11px;
+  line-height: 2;
+  color: var(--text-dim);
+  padding: 10px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.stack-list li:last-child {
+  border-bottom: none;
+}
+
+/* Team */
+.team-section {
+  padding: 120px 48px;
+  background: var(--ink-deep);
+}
+
+.team-intro {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.9;
+  max-width: 520px;
+  margin: 16px 0 48px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.team-card {
+  background: var(--ink-card);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.team-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  transform: translateY(-4px);
+}
+
+.team-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  background: var(--ink-light);
+}
+
+.team-card h3 {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  padding: 18px 16px 20px;
+  text-align: center;
 }
 
 .footer-team {
@@ -1473,8 +1715,14 @@ footer {
   .how,
   .verdict,
   .demo,
+  .team-section,
   footer {
     padding: 72px 20px;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   .problem-grid,

@@ -20,8 +20,9 @@
       <a href="#feasibility">How it works</a>
       <a href="#gate">The gate</a>
       <a href="#demo">Live demo</a>
+      <a href="#team">Team</a>
       <a href="https://github.com/abasu9/NextStep.ai" target="_blank" rel="noopener">GitHub</a>
-      <a href="#demo" class="nav-cta">Try demo</a>
+      <a href="#team" class="nav-cta nav-cta-team">Meet the team</a>
     </div>
   </nav>
 
@@ -49,6 +50,7 @@
       <p class="hero-meta">UIC Falls Cohort · Llama 3.1 8B + mxbai-embed-large · On-Prem · NIST 800-171</p>
       <div class="hero-actions">
         <a href="#demo" class="btn-primary">Open live demo</a>
+        <a href="#team" class="btn-ghost">Meet the team</a>
         <a href="assets/EvidenceFirst_CAIDF.pptx" class="btn-ghost">Download deck (PPTX)</a>
       </div>
       <p class="hero-badges">Gated · Grounded · Auditable · Human-in-the-Loop</p>
@@ -70,8 +72,8 @@
         <p class="section-sub fade-in">Most clinical AI is rewarded for answering. We reward it for knowing when <strong>not</strong> to.</p>
       </div>
       <figure class="figure fade-in">
-        <img src="assets/fig-6.png" alt="Clinician and AI judge-act workflow from deck" loading="lazy" />
-        <figcaption>Judge → Act: human checkpoint before every clinical assertion (deck).</figcaption>
+        <img src="assets/deck/deck-agentic-loop.png" alt="Agentic workflow diagram from EvidenceFirst deck" loading="lazy" />
+        <figcaption>From answers to action — gate produces an addressed task; human confirms every write-back (deck slide 4).</figcaption>
       </figure>
     </div>
   </section>
@@ -98,6 +100,25 @@
         </article>
       </div>
       <p class="deck-note fade-in">Human-in-the-loop is the mechanism — the gate escalates at the right moment.</p>
+      <div class="verdict-distribution fade-in" aria-label="Verdict distribution on UIC Falls cohort">
+        <p class="panel-label">Verdict distribution · 200-patient UIC Falls set (demo)</p>
+        <div class="dist-row">
+          <span class="dist-name proceed">PROCEED</span>
+          <div class="dist-bar"><div class="dist-fill proceed" style="width:38%"></div></div>
+          <span class="dist-pct">38%</span>
+        </div>
+        <div class="dist-row">
+          <span class="dist-name gather">GATHER</span>
+          <div class="dist-bar"><div class="dist-fill gather" style="width:47%"></div></div>
+          <span class="dist-pct">47%</span>
+        </div>
+        <div class="dist-row">
+          <span class="dist-name abstain">ABSTAIN</span>
+          <div class="dist-bar"><div class="dist-fill abstain" style="width:15%"></div></div>
+          <span class="dist-pct">15%</span>
+        </div>
+        <p class="panel-note">Illustrative mix from deck slide 10 · computable on full cohort run.</p>
+      </div>
     </div>
   </section>
 
@@ -117,10 +138,36 @@
         </ol>
         <p class="deck-note">Stop the dangerous cross-disciplinary synthesis step so hallucination never happens.</p>
       </div>
-      <figure class="figure fade-in">
-        <img src="assets/fig-10.png" alt="Verdict distribution from deck" loading="lazy" />
-        <figcaption>Verdict distribution · metrics on the 100-patient UIC Falls set (deck).</figcaption>
-      </figure>
+      <div class="feasibility-panel fade-in" aria-label="Validated fall-risk instruments">
+        <p class="panel-label">Validated instruments</p>
+        <div class="instrument-chips">
+          <span class="instrument-chip">Morse Fall Scale</span>
+          <span class="instrument-chip">Hendrich II</span>
+          <span class="instrument-chip">Timed Up and Go</span>
+        </div>
+        <div class="instrument-flow">
+          <div class="flow-step">
+            <span class="flow-num">?</span>
+            <p>Vague question<br><em>“What’s the fall risk?”</em></p>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-step flow-step-accent">
+            <span class="flow-num">⚖</span>
+            <p>Anchor to instrument<br><em>Never free-form synthesis</em></p>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-step">
+            <span class="flow-num">✓</span>
+            <p>Check record<br><em>Fields · author · 30-day window</em></p>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-step flow-step-verdict">
+            <span class="flow-num">G</span>
+            <p>Grounded verdict<br><em>Score or named gap</em></p>
+          </div>
+        </div>
+        <p class="panel-note">Illustrative flow · same logic as the live demo gate.</p>
+      </div>
     </div>
   </section>
 
@@ -188,8 +235,8 @@
         </div>
       </div>
       <figure class="figure wide fade-in">
-        <img src="assets/fig-14.png" alt="Knowledge graph by author type from deck" loading="lazy" />
-        <figcaption>Knowledge graph · nodes by author_type — auditability before the model speaks (deck).</figcaption>
+        <img src="assets/deck/deck-knowledge-graph.png" alt="Knowledge graph by author type from EvidenceFirst deck" loading="lazy" />
+        <figcaption>Knowledge graph · nodes by author_type — auditability before the model speaks (deck slide 16).</figcaption>
       </figure>
     </div>
   </section>
@@ -208,10 +255,15 @@
         </ul>
         <p class="deck-note">Zero data egress · NIST 800-171 aligned environment</p>
       </div>
-      <figure class="figure fade-in">
-        <img src="assets/fig-16.png" alt="Architecture diagram from deck" loading="lazy" />
-        <figcaption>On-prem stack and workflow (deck).</figcaption>
-      </figure>
+      <div class="stack-panel fade-in" aria-label="On-prem stack from deck">
+        <p class="stack-title">On-prem stack (deck slide 17)</p>
+        <ul class="stack-list">
+          <li><strong>Llama 3.1 8B</strong> — grounded answers</li>
+          <li><strong>mxbai-embed-large</strong> — concept gate</li>
+          <li><strong>Ollama</strong> — zero data egress</li>
+          <li><strong>NIST 800-171</strong> — aligned deployment</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -277,6 +329,34 @@
 
   <div class="accent-divider"></div>
 
+  <section class="team-section" id="team">
+    <div class="section-inner">
+      <p class="section-eyebrow fade-in">Team 9</p>
+      <h2 class="section-title fade-in">Meet the team<br><em>Sonic Death Monkeys</em></h2>
+      <p class="team-intro fade-in">EvidenceFirst CAIDF · May 30, 2026 — the people behind NextStep.ai.</p>
+      <div class="team-grid fade-in">
+        <article class="team-card">
+          <img src="assets/team/luis-cisneros.png" alt="Luis Cisneros" width="320" height="360" loading="lazy" />
+          <h3>Luis Cisneros</h3>
+        </article>
+        <article class="team-card">
+          <img src="assets/team/abhishek-basu.png" alt="Abhishek Basu" width="320" height="360" loading="lazy" />
+          <h3>Abhishek Basu</h3>
+        </article>
+        <article class="team-card">
+          <img src="assets/team/lawrence-salud.png" alt="Lawrence Salud" width="320" height="360" loading="lazy" />
+          <h3>Lawrence Salud</h3>
+        </article>
+        <article class="team-card">
+          <img src="assets/team/amy-wang.png" alt="Amy Y. Wang" width="320" height="360" loading="lazy" />
+          <h3>Amy Y. Wang</h3>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="accent-divider"></div>
+
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
@@ -297,6 +377,7 @@
         </div>
         <div class="footer-col">
           <h4>Team</h4>
+          <a href="#team">Meet the team</a>
           <span class="footer-team">Luis Cisneros · Abhishek Basu · Lawrence Salud · Amy Y. Wang</span>
         </div>
       </div>
