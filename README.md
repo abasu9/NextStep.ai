@@ -15,6 +15,8 @@ This repo is built **100% free**: static HTML/CSS/JS, no API keys, no paid hosti
 3. Set **Source** to **GitHub Actions** (the included workflow deploys the `docs/` folder).
 4. After the workflow runs, open **https://abasu9.github.io/NextStep.ai/**
 
+> **Custom domain note:** If `nextstep.ai` shows an old “AI Modernisation” coaching page, your domain DNS still points to **OVH** (not GitHub). Use the `github.io` URL above until you point DNS to GitHub Pages (see below).
+
 ### Sample data in this repo
 
 **`docs/data/sample_patients.json` is committed to git** (~200 synthetic patients). It is **not real clinical data** — safe for public GitHub and Pages. See [docs/data/README.md](docs/data/README.md).
@@ -59,3 +61,17 @@ streamlit run app.py
 ## Real UIC cohort
 
 The UIC Falls data is not redistributed. To use your own cohort locally, run `build_sample.py` against your mounted dataset and replace `docs/data/sample_patients.json`.
+
+## Point `nextstep.ai` at this site (optional)
+
+GitHub Pages needs these DNS records (replace OVH hosting):
+
+| Type | Name | Value |
+|------|------|--------|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `abasu9.github.io` |
+
+Then in repo **Settings → Pages**, set custom domain to `nextstep.ai` (no `https://` or trailing slash) and re-add `docs/CNAME` containing only `nextstep.ai`.
