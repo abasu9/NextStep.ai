@@ -79,7 +79,7 @@ python3 scripts/extract_ppt_assets.py
 | | |
 |---|---|
 | Luis Cisneros | ![Luis](docs/assets/team/luis-cisneros.png) |
-| Abhishek Basu | ![Abhishek](docs/assets/team/abhishek-basu.png) |
+| Abhishek Basu | ![Abhishek](docs/assets/team/abhishek-basu.jpg) |
 | Lawrence Salud | ![Lawrence](docs/assets/team/lawrence-salud.png) |
 | Amy Y. Wang | ![Amy](docs/assets/team/amy-wang.png) |
 

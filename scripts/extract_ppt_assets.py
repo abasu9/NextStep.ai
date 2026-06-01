@@ -12,7 +12,7 @@ OUT = ROOT / "docs" / "assets" / "deck"
 # ppt/media file → slide meaning (avoid blind fig-N copies; slide 17 has stock headshots)
 TEAM_IMAGES: dict[str, str] = {
     "luis-cisneros.png": "ppt/media/image10.png",
-    "abhishek-basu.png": "ppt/media/image7.png",
+    # abhishek-basu.jpg is added manually (not from deck)
     "lawrence-salud.png": "ppt/media/image12.png",
     "amy-wang.png": "ppt/media/image6.png",
 }
