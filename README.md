@@ -72,19 +72,6 @@ python3 scripts/extract_ppt_assets.py
 
 ---
 
-## Team
-
-| | |
-|---|---|
-| Luis Cisneros | ![Luis](docs/assets/team/luis-cisneros.png) |
-| Abhishek Basu | ![Abhishek](docs/assets/team/abhishek-basu.jpg) |
-| Lawrence Salud | ![Lawrence](docs/assets/team/lawrence-salud.png) |
-| Amy Y. Wang | ![Amy](docs/assets/team/amy-wang.png) |
-
-[Meet the team](https://abasu9.github.io/NextStep.ai/#team) on the live site.
-
----
-
 ## Project layout
 
 | Path | Purpose |
