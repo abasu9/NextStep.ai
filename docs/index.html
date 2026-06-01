@@ -5,98 +5,252 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="NextStep.ai — clinical achievability gate. Know when not to answer." />
   <title>NextStep.ai — Achievability Agent</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div class="layout">
-    <aside class="sidebar">
-      <h2>Saved conversations</h2>
-      <p class="hint">Stored locally in your browser. No account or API keys.</p>
-      <div id="saved-list" class="saved-list">
-        <p class="hint" style="margin:0">No saved chats yet.</p>
-      </div>
-      <span class="cohort-badge" id="cohort-size">200-patient demo cohort</span>
-      <div class="status-pill">
-        <span class="dot"></span>
-        <span>100% free · runs in browser</span>
-      </div>
-    </aside>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
-    <main class="main">
-      <header class="hero">
-        <h1 class="brand">NextStep<span>.ai</span></h1>
-        <p class="tagline">Restraint prevents liability.</p>
-        <p>An agent that knows when not to answer — so the care team coordinates around one trusted record.</p>
-        <p class="pillars">Safer care · Cleaner claims · One source of truth</p>
-        <p class="badges">Gated · Grounded · Auditable · Human-in-the-Loop</p>
-      </header>
+  <nav>
+    <a href="#" class="logo">NEXTSTEP<span class="logo-dot">.AI</span></a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#gate">The gate</a>
+      <a href="#demo">Live demo</a>
+      <a href="https://github.com/abasu9/NextStep.ai" target="_blank" rel="noopener">GitHub</a>
+      <a href="#demo" class="nav-cta">Try the demo</a>
+    </div>
+  </nav>
 
-      <div class="patient-bar">
-        <label for="patient-id">Patient ID</label>
-        <input type="number" id="patient-id" min="1" max="200" value="1" list="patient-ids" />
-        <datalist id="patient-ids"></datalist>
-        <span class="patient-meta" id="patient-meta">IDs 1–200 · synthetic demo data</span>
-        <span id="patient-error" class="error-text hidden"></span>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines" aria-hidden="true">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="0" x2="720" y2="450" stroke="currentColor" stroke-width="0.6"/>
+        <line x1="1440" y1="0" x2="720" y2="450" stroke="currentColor" stroke-width="0.6"/>
+        <line x1="0" y1="900" x2="720" y2="450" stroke="currentColor" stroke-width="0.6"/>
+        <line x1="1440" y1="900" x2="720" y2="450" stroke="currentColor" stroke-width="0.6"/>
+        <circle cx="720" cy="450" r="3" fill="currentColor" opacity="0.8"/>
+        <circle cx="720" cy="450" r="60" fill="none" stroke="currentColor" stroke-width="0.4" opacity="0.6"/>
+        <circle cx="720" cy="450" r="130" fill="none" stroke="currentColor" stroke-width="0.3" opacity="0.4"/>
+        <circle cx="720" cy="450" r="220" fill="none" stroke="currentColor" stroke-width="0.2" opacity="0.2"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Clinical achievability infrastructure</p>
+      <h1 class="hero-title">Restraint<br><em>prevents liability.</em></h1>
+      <p class="hero-sub">An agent that knows when <span>not to answer</span> — so the All-Care Team coordinates around one trusted record.</p>
+      <div class="hero-actions">
+        <a href="#demo" class="btn-primary">Open live demo</a>
+        <a href="#how" class="btn-ghost">How the gate works</a>
       </div>
+      <p class="hero-badges">Gated · Grounded · Auditable · Human-in-the-Loop</p>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span class="scroll-label">Scroll</span>
+    </div>
+  </section>
 
-      <div class="evrow">
-        <div class="evcard">
-          <p class="lab">Fall index date</p>
-          <p class="val" id="ev-index">—</p>
+  <div class="accent-divider"></div>
+
+  <section class="problem">
+    <div class="section-inner">
+      <p class="section-eyebrow fade-in">The problem</p>
+      <h2 class="section-title fade-in">You already have the chart.<br><em>You still can't defend the answer.</em></h2>
+      <p class="section-sub fade-in">Clinical AI that always answers creates liability. Teams need a gate that classifies every question before reasoning — and routes missing evidence to the right human.</p>
+      <div class="problem-grid fade-in">
+        <div class="problem-card">
+          <div class="problem-number">01</div>
+          <h3 class="problem-heading">Hallucination risk</h3>
+          <p class="problem-body">Models invent values, medications, and scores when the record is silent. One confident wrong answer is worse than no answer.</p>
         </div>
-        <div class="evcard">
-          <p class="lab">Fall-risk within 30d</p>
-          <p class="val" id="ev-fr">—</p>
+        <div class="problem-card">
+          <div class="problem-number">02</div>
+          <h3 class="problem-heading">Missing evidence</h3>
+          <p class="problem-body">Fall-risk questions need instruments and vitals within the window. Without them, the honest move is gather — not guess.</p>
         </div>
-        <div class="evcard">
-          <p class="lab">Vitals within 30d</p>
-          <p class="val" id="ev-vt">—</p>
+        <div class="problem-card">
+          <div class="problem-number">03</div>
+          <h3 class="problem-heading">Off-distribution asks</h3>
+          <p class="problem-body">Billing, legal, and out-of-chart questions should abstain. Concept distance catches what keyword filters miss.</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-number">04</div>
+          <h3 class="problem-heading">No audit trail</h3>
+          <p class="problem-body">Every response should show PROCEED, GATHER, or ABSTAIN with why — so clinicians trust the workflow, not the prose.</p>
         </div>
       </div>
+      <div class="mock-record fade-in">
+        <div class="record-row"><span>Question</span><span>What is the patient's fall risk score?</span></div>
+        <div class="record-row"><span>Record</span><span>No Morse / Hendrich within 30d of index fall</span></div>
+        <div class="record-row verdict-row"><span>Gate</span><span class="tag-gather">GATHER</span></div>
+        <p class="record-note">↑ route survey to patient · do not compute a score from silence</p>
+      </div>
+    </div>
+  </section>
 
-      <details class="panel">
-        <summary>View patient record the model sees</summary>
-        <div class="panel-body" id="record-panel"></div>
-      </details>
+  <div class="accent-divider"></div>
 
-      <details class="panel" id="graph-panel">
-        <summary>Show patient knowledge graph</summary>
-        <div class="panel-body graph-wrap">
-          <pre class="mermaid" id="graph-mermaid"></pre>
+  <section class="how" id="how">
+    <div class="section-inner">
+      <p class="section-eyebrow fade-in">How it works</p>
+      <h2 class="section-title fade-in">Three outcomes.<br><em>One trusted record.</em></h2>
+      <p class="section-sub fade-in">NextStep classifies every question before the model answers. Answers are grounded only when the gate says PROCEED.</p>
+      <div class="steps-grid fade-in">
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3 class="step-title">PROCEED</h3>
+          <p class="step-body">Evidence is in-band and present. The model answers only from the patient record — with labeled sections and every medication named.</p>
+          <div class="step-code"><span class="code-val">✓</span> in-distribution · vitals + fall-risk on file</div>
         </div>
-      </details>
-
-      <section class="chat-area" id="chat-messages" aria-live="polite"></section>
-
-      <div id="followups-wrap" class="hidden">
-        <p class="section-label">Suggested follow-ups</p>
-        <div class="btn-row" id="followups"></div>
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3 class="step-title">GATHER</h3>
+          <p class="step-body">Question is clinical but data is missing or ambiguous. Name what's needed — Morse survey, PT test, or clinician clarification.</p>
+          <div class="step-code"><span class="code-key">→</span> route to patient / PT / nurse</div>
+        </div>
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3 class="step-title">ABSTAIN</h3>
+          <p class="step-body">Off-distribution or unanswerable from the chart. Explain why — never fabricate a clinical conclusion.</p>
+          <div class="step-code"><span style="color:var(--red)">✗</span> hand back to clinician</div>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <p class="section-label">Quick actions</p>
-      <div class="btn-row" id="quick-actions">
-        <button type="button" class="btn" data-q="Summarize this patient's history and current status.">Summarize patient</button>
-        <button type="button" class="btn accent" data-fr="1">Fall risk score</button>
-        <button type="button" class="btn" data-q="What medications is this patient currently on?">Medications</button>
-        <button type="button" class="btn" data-q="What are this patient's main diagnoses?">Diagnoses</button>
+  <div class="accent-divider"></div>
+
+  <section class="verdict" id="gate">
+    <div class="section-inner">
+      <div class="verdict-inner">
+        <div>
+          <p class="section-eyebrow fade-in">The gate</p>
+          <h2 class="section-title fade-in">Every question.<br><em>A verdict first.</em></h2>
+          <p class="section-sub fade-in" style="margin-bottom:0">Concept embedding, answerability checks, and validated fall-risk instrument selection — before any grounded narrative.</p>
+        </div>
+        <div class="verdict-visual fade-in">
+          <div class="call-flow">
+            <div class="call-item passed">Question received <span class="call-tag">fall risk score</span></div>
+            <div class="call-item passed">Concept gate — in distribution <span class="call-tag">fall assessment</span></div>
+            <div class="call-item">Instrument picker — Morse Fall Scale <span class="call-tag">survey</span></div>
+            <div class="call-item blocked">Missing inputs — gait, mental status <span class="call-tag">✗ gather</span></div>
+          </div>
+          <div class="verdict-meter">
+            <div class="meter-label">Evidence completeness (30d window)</div>
+            <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+            <div class="meter-stats"><span>0%</span><span style="color:var(--accent-light)">72% — not sufficient</span></div>
+            <div class="verdict-label kill"><div class="verdict-dot"></div>GATHER — DO NOT SCORE</div>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div id="loading" class="loading hidden">
-        <span class="spinner"></span>
-        <span>Checking achievability…</span>
+  <div class="accent-divider"></div>
+
+  <section class="demo" id="demo">
+    <div class="section-inner demo-header">
+      <p class="section-eyebrow fade-in">Live demo</p>
+      <h2 class="section-title fade-in">Try it on <em>synthetic patients.</em></h2>
+      <p class="section-sub fade-in">200 demo charts · runs in your browser · no API keys · chats saved locally</p>
+    </div>
+    <div class="demo-layout">
+      <aside class="sidebar">
+        <h2>Saved conversations</h2>
+        <p class="hint">Stored in your browser only.</p>
+        <div id="saved-list" class="saved-list">
+          <p class="hint empty-hint">No saved chats yet.</p>
+        </div>
+        <span class="cohort-badge" id="cohort-size">200-patient demo cohort</span>
+        <div class="status-pill">
+          <span class="dot"></span>
+          <span>100% free · client-side</span>
+        </div>
+      </aside>
+      <div class="demo-main">
+        <div class="patient-bar">
+          <label for="patient-id">Patient ID</label>
+          <input type="number" id="patient-id" min="1" max="200" value="1" list="patient-ids" />
+          <datalist id="patient-ids"></datalist>
+          <span class="patient-meta" id="patient-meta">IDs 1–200 · synthetic</span>
+          <span id="patient-error" class="error-text hidden"></span>
+        </div>
+        <div class="evrow">
+          <div class="evcard"><p class="lab">Fall index date</p><p class="val" id="ev-index">—</p></div>
+          <div class="evcard"><p class="lab">Fall-risk within 30d</p><p class="val" id="ev-fr">—</p></div>
+          <div class="evcard"><p class="lab">Vitals within 30d</p><p class="val" id="ev-vt">—</p></div>
+        </div>
+        <details class="panel">
+          <summary>View patient record the model sees</summary>
+          <div class="panel-body" id="record-panel"></div>
+        </details>
+        <details class="panel" id="graph-panel">
+          <summary>Show patient knowledge graph</summary>
+          <div class="panel-body graph-wrap"><pre class="mermaid" id="graph-mermaid"></pre></div>
+        </details>
+        <section class="chat-area" id="chat-messages" aria-live="polite"></section>
+        <div id="followups-wrap" class="hidden">
+          <p class="section-label">Suggested follow-ups</p>
+          <div class="btn-row" id="followups"></div>
+        </div>
+        <p class="section-label">Quick actions</p>
+        <div class="btn-row" id="quick-actions">
+          <button type="button" class="btn btn-primary-sm" data-q="Summarize this patient's history and current status.">Summarize patient</button>
+          <button type="button" class="btn btn-accent-sm" data-fr="1">Fall risk score</button>
+          <button type="button" class="btn btn-primary-sm" data-q="What medications is this patient currently on?">Medications</button>
+          <button type="button" class="btn btn-primary-sm" data-q="What are this patient's main diagnoses?">Diagnoses</button>
+        </div>
+        <div id="loading" class="loading hidden"><span class="spinner"></span><span>Checking achievability…</span></div>
+        <form class="composer" id="ask-form">
+          <input type="text" id="question" placeholder="Ask about this patient…" autocomplete="off" />
+          <button type="submit" class="btn-primary">Send</button>
+        </form>
       </div>
+    </div>
+  </section>
 
-      <form class="composer" id="ask-form">
-        <input type="text" id="question" placeholder="Ask about this patient…" autocomplete="off" />
-        <button type="submit" class="btn">Send</button>
-      </form>
-    </main>
-  </div>
+  <div class="accent-divider"></div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">NEXTSTEP<span class="logo-dot">.AI</span></a>
+        <p class="footer-tagline">Clinical achievability gate. Know when not to answer — grounded in one trusted record.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#how">How it works</a>
+          <a href="#gate">The gate</a>
+          <a href="#demo">Live demo</a>
+        </div>
+        <div class="footer-col">
+          <h4>Data</h4>
+          <a href="data/README.md">Sample cohort</a>
+          <a href="https://github.com/abasu9/NextStep.ai" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="footer-col">
+          <h4>Verdicts</h4>
+          <a href="#demo">PROCEED</a>
+          <a href="#demo">GATHER</a>
+          <a href="#demo">ABSTAIN</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 NextStep.ai · Synthetic demo data only · Not for clinical use</p>
+      <div class="footer-status"><div class="status-dot"></div>Demo · 200 patients</div>
+    </div>
+  </footer>
 
   <div id="fr-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
     <div class="modal" id="fr-modal-content"></div>
   </div>
 
+  <script src="js/landing.js"></script>
   <script type="module" src="js/app.js"></script>
 </body>
 </html>

@@ -200,7 +200,7 @@ function showFollowups(list) {
   }
   wrap.classList.remove('hidden');
   row.innerHTML = list
-    .map((q) => `<button type="button" class="btn followup-btn">${escapeHtml(q)}</button>`)
+    .map((q) => `<button type="button" class="btn-primary-sm followup-btn">${escapeHtml(q)}</button>`)
     .join('');
   row.querySelectorAll('.followup-btn').forEach((btn) => {
     btn.addEventListener('click', () => submitQuestion(btn.textContent));
@@ -216,8 +216,8 @@ function openFrModal(step, data = {}) {
     frModalContent.innerHTML = `
       <h3>Fall risk is broad. Which kind of validated assessment?</h3>
       <div class="btn-row">
-        <button type="button" class="btn" data-type="survey">Patient-facing survey</button>
-        <button type="button" class="btn accent" data-type="performance">Provider performance test</button>
+        <button type="button" class="btn-primary-sm" data-type="survey">Patient-facing survey</button>
+        <button type="button" class="btn-accent-sm" data-type="performance">Provider performance test</button>
       </div>`;
     frModalContent.querySelectorAll('[data-type]').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -232,7 +232,7 @@ function openFrModal(step, data = {}) {
     frModalContent.innerHTML = `
       <h3>Which validated instrument?</h3>
       <div class="btn-row">
-        ${opts.map(([name]) => `<button type="button" class="btn" data-calc="${escapeHtml(name)}">${escapeHtml(name)}</button>`).join('')}
+        ${opts.map(([name]) => `<button type="button" class="btn-primary-sm" data-calc="${escapeHtml(name)}">${escapeHtml(name)}</button>`).join('')}
       </div>`;
     frModalContent.querySelectorAll('[data-calc]').forEach((btn) => {
       btn.addEventListener('click', () => runFrCheck(btn.dataset.calc));
@@ -244,14 +244,14 @@ function openFrModal(step, data = {}) {
       <h3><span class="verdict" style="background:#ffedd5;color:#c2410c">GATHER</span></h3>
       <div class="ans">${data.html}</div>
       <div class="btn-row" style="margin-top:1rem">
-        <button type="button" class="btn">${escapeHtml(data.routeLabel)}</button>
-        <button type="button" class="btn ghost" id="fr-reset">Start over</button>
+        <button type="button" class="btn-primary-sm">${escapeHtml(data.routeLabel)}</button>
+        <button type="button" class="btn-ghost-sm" id="fr-reset">Start over</button>
       </div>`;
     frModalContent.querySelector('#fr-reset')?.addEventListener('click', () => {
       frFlow = null;
       frModal.classList.add('hidden');
     });
-    frModalContent.querySelector('.btn:not(.ghost)')?.addEventListener('click', () => {
+    frModalContent.querySelector('.btn-primary-sm')?.addEventListener('click', () => {
       alert(`Request queued: ${data.source}`);
     });
   }
