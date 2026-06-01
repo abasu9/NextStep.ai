@@ -1,6 +1,6 @@
 # NextStep.ai — Evidence-First Achievability Gate
 
-> **Source of truth:** [EvidenceFirst_CAIDF.pptx](EvidenceFirst_CAIDF.pptx) (CAIDF Hackathon · Team 9 · May 30, 2026)
+> **Source of truth:** [EvidenceFirst_CAIDF.pptx](EvidenceFirst_CAIDF.pptx) (CAIDF Hackathon · May 30, 2026)
 
 A clinical AI gate that decides whether a question *can* be answered **before** it answers.
 
@@ -74,8 +74,6 @@ python3 scripts/extract_ppt_assets.py
 
 ## Team
 
-**Team 9 — Sonic Death Monkeys**
-
 | | |
 |---|---|
 | Luis Cisneros | ![Luis](docs/assets/team/luis-cisneros.png) |
@@ -83,7 +81,7 @@ python3 scripts/extract_ppt_assets.py
 | Lawrence Salud | ![Lawrence](docs/assets/team/lawrence-salud.png) |
 | Amy Y. Wang | ![Amy](docs/assets/team/amy-wang.png) |
 
-On the site: [Meet the team](https://abasu9.github.io/NextStep.ai/#team)
+[Meet the team](https://abasu9.github.io/NextStep.ai/#team) on the live site.
 
 ---
 

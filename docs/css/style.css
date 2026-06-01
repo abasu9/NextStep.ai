@@ -873,33 +873,49 @@ nav {
   text-align: right;
 }
 
-/* Gate panel — fixed alignment (deck slide 14) */
-.gate-section {
+/* Gate panel — deck slide 14 */
+.gate-section .section-eyebrow {
+  margin-bottom: 28px;
+}
+
+.gate-grid {
   display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  gap: 48px;
-  align-items: start;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.gate-title {
+  margin-bottom: 16px;
+}
+
+.gate-sub {
+  margin-bottom: 0;
+  max-width: 480px;
 }
 
 .gate-panel {
   background: var(--ink-card);
   border: 1px solid rgba(56, 189, 248, 0.12);
-  padding: 20px 20px 20px 12px;
+  padding: 24px 24px 22px 20px;
+  align-self: center;
 }
 
 .gate-track {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  gap: 0;
+  margin-bottom: 22px;
+  position: relative;
 }
 
 .gate-step {
   display: grid;
-  grid-template-columns: 32px 1fr minmax(120px, auto);
-  column-gap: 16px;
+  grid-template-columns: 28px minmax(0, 1fr) 128px;
+  column-gap: 14px;
   align-items: center;
-  min-height: 56px;
-  padding: 6px 0;
+  min-height: 52px;
+  padding: 10px 0;
 }
 
 .gate-rail {
@@ -907,16 +923,17 @@ nav {
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 100%;
+  align-self: stretch;
+  min-height: 52px;
 }
 
 .gate-rail::after {
   content: '';
   position: absolute;
-  top: 50%;
-  bottom: -50%;
+  top: calc(50% + 8px);
   left: 50%;
   width: 2px;
+  height: calc(100% - 8px);
   transform: translateX(-50%);
   background: var(--ink-light);
   z-index: 0;
@@ -969,14 +986,16 @@ nav {
 
 .gate-tag {
   font-size: 9px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 5px 10px;
+  padding: 6px 8px;
   border: 1px solid rgba(56, 189, 248, 0.35);
   color: var(--accent-light);
   text-align: center;
   white-space: nowrap;
   justify-self: end;
+  width: 128px;
+  box-sizing: border-box;
 }
 
 .gate-step.is-block .gate-tag {
@@ -1073,12 +1092,8 @@ nav {
   background: var(--ink-deep);
 }
 
-.team-intro {
-  font-size: 12px;
-  color: var(--text-dim);
-  line-height: 1.9;
-  max-width: 520px;
-  margin: 16px 0 48px;
+.team-section .section-title {
+  margin-bottom: 48px;
 }
 
 .team-grid {
@@ -1108,21 +1123,18 @@ nav {
   background: var(--ink-light);
 }
 
+.team-card-body {
+  padding: 18px 16px 20px;
+  text-align: center;
+}
+
 .team-card h3 {
   font-family: var(--font-display);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--text);
-  padding: 18px 16px 20px;
-  text-align: center;
-}
-
-.footer-team {
-  font-size: 11px;
-  color: var(--text-dim);
-  line-height: 1.8;
-  display: block;
+  margin: 0 0 6px;
 }
 
 .verdict-meter {
@@ -1727,7 +1739,7 @@ footer {
 
   .problem-grid,
   .steps-grid,
-  .gate-section,
+  .gate-grid,
   .split,
   .verdict-cards,
   .impact-grid,
@@ -1738,12 +1750,14 @@ footer {
 
   .gate-step {
     grid-template-columns: 28px 1fr;
-    row-gap: 6px;
+    row-gap: 8px;
   }
 
   .gate-tag {
     grid-column: 2;
     justify-self: start;
+    width: auto;
+    max-width: 100%;
   }
 
   .evrow {
