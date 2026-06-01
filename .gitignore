@@ -8,3 +8,4 @@ data/bands_cache.pkl
 dist/
 build/
 *.dmg
+docs/assets/ppt/

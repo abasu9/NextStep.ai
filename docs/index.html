@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="NextStep.ai — clinical achievability gate. Know when not to answer." />
-  <title>NextStep.ai — Achievability Agent</title>
+  <meta name="description" content="NextStep.ai — Evidence-first achievability gate for the UIC Falls cohort. PROCEED, GATHER, or ABSTAIN before every answer." />
+  <title>NextStep.ai — Evidence-First Achievability Gate</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -15,11 +15,13 @@
   <nav>
     <a href="#" class="logo">NEXTSTEP<span class="logo-dot">.AI</span></a>
     <div class="nav-links">
-      <a href="#how">How it works</a>
+      <a href="#problem">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#feasibility">How it works</a>
       <a href="#gate">The gate</a>
       <a href="#demo">Live demo</a>
       <a href="https://github.com/abasu9/NextStep.ai" target="_blank" rel="noopener">GitHub</a>
-      <a href="#demo" class="nav-cta">Try the demo</a>
+      <a href="#demo" class="nav-cta">Try demo</a>
     </div>
   </nav>
 
@@ -33,17 +35,21 @@
         <line x1="1440" y1="900" x2="720" y2="450" stroke="currentColor" stroke-width="0.6"/>
         <circle cx="720" cy="450" r="3" fill="currentColor" opacity="0.8"/>
         <circle cx="720" cy="450" r="60" fill="none" stroke="currentColor" stroke-width="0.4" opacity="0.6"/>
-        <circle cx="720" cy="450" r="130" fill="none" stroke="currentColor" stroke-width="0.3" opacity="0.4"/>
-        <circle cx="720" cy="450" r="220" fill="none" stroke="currentColor" stroke-width="0.2" opacity="0.2"/>
       </svg>
     </div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Clinical achievability infrastructure</p>
-      <h1 class="hero-title">Restraint<br><em>prevents liability.</em></h1>
-      <p class="hero-sub">An agent that knows when <span>not to answer</span> — so the All-Care Team coordinates around one trusted record.</p>
+      <p class="hero-eyebrow">EvidenceFirst · CAIDF Hackathon · May 30, 2026</p>
+      <h1 class="hero-title">A strong foundation<br>for <em>clinical decisions.</em></h1>
+      <p class="hero-sub">Advanced summarization for care teams — turning data into <span>insight, not speculation.</span></p>
+      <div class="verdict-pills">
+        <span class="pill proceed">PROCEED</span>
+        <span class="pill gather">GATHER</span>
+        <span class="pill abstain">ABSTAIN</span>
+      </div>
+      <p class="hero-meta">UIC Falls Cohort · Llama 3.1 8B + mxbai-embed-large · On-Prem · NIST 800-171</p>
       <div class="hero-actions">
         <a href="#demo" class="btn-primary">Open live demo</a>
-        <a href="#how" class="btn-ghost">How the gate works</a>
+        <a href="assets/EvidenceFirst_CAIDF.pptx" class="btn-ghost">Download deck (PPTX)</a>
       </div>
       <p class="hero-badges">Gated · Grounded · Auditable · Human-in-the-Loop</p>
     </div>
@@ -55,97 +61,157 @@
 
   <div class="accent-divider"></div>
 
-  <section class="problem">
-    <div class="section-inner">
-      <p class="section-eyebrow fade-in">The problem</p>
-      <h2 class="section-title fade-in">You already have the chart.<br><em>You still can't defend the answer.</em></h2>
-      <p class="section-sub fade-in">Clinical AI that always answers creates liability. Teams need a gate that classifies every question before reasoning — and routes missing evidence to the right human.</p>
-      <div class="problem-grid fade-in">
-        <div class="problem-card">
-          <div class="problem-number">01</div>
-          <h3 class="problem-heading">Hallucination risk</h3>
-          <p class="problem-body">Models invent values, medications, and scores when the record is silent. One confident wrong answer is worse than no answer.</p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-number">02</div>
-          <h3 class="problem-heading">Missing evidence</h3>
-          <p class="problem-body">Fall-risk questions need instruments and vitals within the window. Without them, the honest move is gather — not guess.</p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-number">03</div>
-          <h3 class="problem-heading">Off-distribution asks</h3>
-          <p class="problem-body">Billing, legal, and out-of-chart questions should abstain. Concept distance catches what keyword filters miss.</p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-number">04</div>
-          <h3 class="problem-heading">No audit trail</h3>
-          <p class="problem-body">Every response should show PROCEED, GATHER, or ABSTAIN with why — so clinicians trust the workflow, not the prose.</p>
-        </div>
+  <section class="problem" id="problem">
+    <div class="section-inner split">
+      <div>
+        <p class="section-eyebrow fade-in">Problem</p>
+        <h2 class="section-title fade-in">Time-strained providers<br><em>can't defend the chart.</em></h2>
+        <p class="section-sub fade-in">Clinicians struggle to find, synthesize, and act on quality patient data gaps essential for safe multidisciplinary care — especially after a fall.</p>
+        <p class="section-sub fade-in">Most clinical AI is rewarded for answering. We reward it for knowing when <strong>not</strong> to.</p>
       </div>
-      <div class="mock-record fade-in">
-        <div class="record-row"><span>Question</span><span>What is the patient's fall risk score?</span></div>
-        <div class="record-row"><span>Record</span><span>No Morse / Hendrich within 30d of index fall</span></div>
-        <div class="record-row verdict-row"><span>Gate</span><span class="tag-gather">GATHER</span></div>
-        <p class="record-note">↑ route survey to patient · do not compute a score from silence</p>
-      </div>
+      <figure class="figure fade-in">
+        <img src="assets/fig-6.png" alt="Clinician and AI judge-act workflow from deck" loading="lazy" />
+        <figcaption>Judge → Act: human checkpoint before every clinical assertion (deck).</figcaption>
+      </figure>
     </div>
   </section>
 
   <div class="accent-divider"></div>
 
-  <section class="how" id="how">
+  <section class="solution" id="solution">
     <div class="section-inner">
-      <p class="section-eyebrow fade-in">How it works</p>
-      <h2 class="section-title fade-in">Three outcomes.<br><em>One trusted record.</em></h2>
-      <p class="section-sub fade-in">NextStep classifies every question before the model answers. Answers are grounded only when the gate says PROCEED.</p>
-      <div class="steps-grid fade-in">
-        <div class="step">
-          <div class="step-number">01</div>
-          <h3 class="step-title">PROCEED</h3>
-          <p class="step-body">Evidence is in-band and present. The model answers only from the patient record — with labeled sections and every medication named.</p>
-          <div class="step-code"><span class="code-val">✓</span> in-distribution · vitals + fall-risk on file</div>
-        </div>
-        <div class="step">
-          <div class="step-number">02</div>
-          <h3 class="step-title">GATHER</h3>
-          <p class="step-body">Question is clinical but data is missing or ambiguous. Name what's needed — Morse survey, PT test, or clinician clarification.</p>
-          <div class="step-code"><span class="code-key">→</span> route to patient / PT / nurse</div>
-        </div>
-        <div class="step">
-          <div class="step-number">03</div>
-          <h3 class="step-title">ABSTAIN</h3>
-          <p class="step-body">Off-distribution or unanswerable from the chart. Explain why — never fabricate a clinical conclusion.</p>
-          <div class="step-code"><span style="color:var(--red)">✗</span> hand back to clinician</div>
-        </div>
+      <p class="section-eyebrow fade-in">Solution · Innovation</p>
+      <h2 class="section-title fade-in">Gate the answer<br><em>before you generate it.</em></h2>
+      <p class="section-sub fade-in">Decide whether to answer, gather more information, or abstain — then reason only when justified.</p>
+      <div class="verdict-cards fade-in">
+        <article class="verdict-card proceed-card">
+          <h3>PROCEED</h3>
+          <p>Evidence complete → grounded answer from the record only.</p>
+        </article>
+        <article class="verdict-card gather-card">
+          <h3>GATHER</h3>
+          <p>Evidence missing → name the gap and route (patient, PT, clinician).</p>
+        </article>
+        <article class="verdict-card abstain-card">
+          <h3>ABSTAIN</h3>
+          <p>Out of scope → explain why; hand back to a clinician.</p>
+        </article>
       </div>
+      <p class="deck-note fade-in">Human-in-the-loop is the mechanism — the gate escalates at the right moment.</p>
+    </div>
+  </section>
+
+  <div class="accent-divider"></div>
+
+  <section class="feasibility" id="feasibility">
+    <div class="section-inner split">
+      <div>
+        <p class="section-eyebrow fade-in">Feasibility · Validated instruments</p>
+        <h2 class="section-title fade-in">One patient.<br><em>Vague question → safe answer.</em></h2>
+        <p class="section-sub fade-in">“What's the fall risk?” is not answered directly. The system anchors to Morse, Hendrich II, or Timed Up and Go — then checks the real record.</p>
+        <ol class="feasibility-steps fade-in">
+          <li><span>1</span> A vague question arrives — not answered directly.</li>
+          <li><span>2</span> Anchor to a validated instrument (Morse · Hendrich II · TUG).</li>
+          <li><span>3</span> Check the record — required fields, author type, 30-day window.</li>
+          <li><span>4</span> Return a grounded verdict — score or exact missing field, routed.</li>
+        </ol>
+        <p class="deck-note">Stop the dangerous cross-disciplinary synthesis step so hallucination never happens.</p>
+      </div>
+      <figure class="figure fade-in">
+        <img src="assets/fig-10.png" alt="Verdict distribution from deck" loading="lazy" />
+        <figcaption>Verdict distribution · metrics on the 100-patient UIC Falls set (deck).</figcaption>
+      </figure>
     </div>
   </section>
 
   <div class="accent-divider"></div>
 
   <section class="verdict" id="gate">
-    <div class="section-inner">
-      <div class="verdict-inner">
-        <div>
-          <p class="section-eyebrow fade-in">The gate</p>
-          <h2 class="section-title fade-in">Every question.<br><em>A verdict first.</em></h2>
-          <p class="section-sub fade-in" style="margin-bottom:0">Concept embedding, answerability checks, and validated fall-risk instrument selection — before any grounded narrative.</p>
+    <div class="section-inner gate-section">
+      <div class="gate-copy fade-in">
+        <p class="section-eyebrow">The gate</p>
+        <h2 class="section-title">Every question.<br><em>A verdict first.</em></h2>
+        <p class="section-sub">Concept embedding, answerability checks, and validated fall-risk instrument selection — before any grounded narrative.</p>
+      </div>
+      <div class="gate-panel fade-in">
+        <div class="gate-track" role="list">
+          <div class="gate-step is-pass" role="listitem">
+            <div class="gate-rail"><span class="gate-dot" aria-hidden="true"></span></div>
+            <p class="gate-text">Question received</p>
+            <span class="gate-tag">FALL RISK SCORE</span>
+          </div>
+          <div class="gate-step is-pass" role="listitem">
+            <div class="gate-rail"><span class="gate-dot" aria-hidden="true"></span></div>
+            <p class="gate-text">Concept gate — in distribution</p>
+            <span class="gate-tag">FALL ASSESSMENT</span>
+          </div>
+          <div class="gate-step is-neutral" role="listitem">
+            <div class="gate-rail"><span class="gate-dot" aria-hidden="true"></span></div>
+            <p class="gate-text">Instrument picker — Morse Fall Scale</p>
+            <span class="gate-tag">SURVEY</span>
+          </div>
+          <div class="gate-step is-block" role="listitem">
+            <div class="gate-rail"><span class="gate-dot" aria-hidden="true"></span></div>
+            <p class="gate-text">Missing inputs — gait, mental status</p>
+            <span class="gate-tag">✕ GATHER</span>
+          </div>
         </div>
-        <div class="verdict-visual fade-in">
-          <div class="call-flow">
-            <div class="call-item passed">Question received <span class="call-tag">fall risk score</span></div>
-            <div class="call-item passed">Concept gate — in distribution <span class="call-tag">fall assessment</span></div>
-            <div class="call-item">Instrument picker — Morse Fall Scale <span class="call-tag">survey</span></div>
-            <div class="call-item blocked">Missing inputs — gait, mental status <span class="call-tag">✗ gather</span></div>
-          </div>
-          <div class="verdict-meter">
-            <div class="meter-label">Evidence completeness (30d window)</div>
-            <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
-            <div class="meter-stats"><span>0%</span><span style="color:var(--accent-light)">72% — not sufficient</span></div>
-            <div class="verdict-label kill"><div class="verdict-dot"></div>GATHER — DO NOT SCORE</div>
-          </div>
+        <div class="verdict-meter">
+          <div class="meter-label">Evidence completeness (30d window)</div>
+          <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+          <div class="meter-stats"><span>0%</span><span class="meter-high">72% — not sufficient</span></div>
+          <div class="verdict-label kill"><span class="verdict-dot" aria-hidden="true"></span>GATHER — DO NOT SCORE</div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <div class="accent-divider"></div>
+
+  <section class="impact" id="impact">
+    <div class="section-inner">
+      <p class="section-eyebrow fade-in">Impact</p>
+      <h2 class="section-title fade-in">Restraint <em>improves quality.</em></h2>
+      <p class="section-sub fade-in">Safer care · Cleaner reports and claims · One source of truth.</p>
+      <div class="impact-grid fade-in">
+        <div class="impact-card">
+          <h3>Safer care</h3>
+          <p>No hallucinated assertions or scores at the bedside — only what the record supports.</p>
+        </div>
+        <div class="impact-card">
+          <h3>Cleaner claims</h3>
+          <p>Source-attributed, audit-ready summaries for reports and reimbursement workflows.</p>
+        </div>
+        <div class="impact-card">
+          <h3>New knowledge</h3>
+          <p>Maps where records are incomplete instead of papering over gaps with fluent prose.</p>
+        </div>
+      </div>
+      <figure class="figure wide fade-in">
+        <img src="assets/fig-14.png" alt="Knowledge graph by author type from deck" loading="lazy" />
+        <figcaption>Knowledge graph · nodes by author_type — auditability before the model speaks (deck).</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="accent-divider"></div>
+
+  <section class="data-tools">
+    <div class="section-inner split">
+      <div>
+        <p class="section-eyebrow fade-in">Data + tools</p>
+        <h2 class="section-title fade-in">Real data. Local.<br><em>In one day.</em></h2>
+        <ul class="data-list fade-in">
+          <li><strong>Corpus</strong> — 100 UIC falls patients (sample); real notes, author_type tagged</li>
+          <li><strong>Stack</strong> — Llama 3.1 8B, mxbai-embed-large, Ollama on-prem</li>
+          <li><strong>Workflow</strong> — intent classifier, quick-action presets, persistent chats</li>
+        </ul>
+        <p class="deck-note">Zero data egress · NIST 800-171 aligned environment</p>
+      </div>
+      <figure class="figure fade-in">
+        <img src="assets/fig-16.png" alt="Architecture diagram from deck" loading="lazy" />
+        <figcaption>On-prem stack and workflow (deck).</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -154,8 +220,8 @@
   <section class="demo" id="demo">
     <div class="section-inner demo-header">
       <p class="section-eyebrow fade-in">Live demo</p>
-      <h2 class="section-title fade-in">Try it on <em>synthetic patients.</em></h2>
-      <p class="section-sub fade-in">200 demo charts · runs in your browser · no API keys · chats saved locally</p>
+      <h2 class="section-title fade-in">Try the gate on <em>200 synthetic patients.</em></h2>
+      <p class="section-sub fade-in">Browser-only · no API keys · chats saved locally · same PROCEED / GATHER / ABSTAIN logic as the deck</p>
     </div>
     <div class="demo-layout">
       <aside class="sidebar">
@@ -165,10 +231,7 @@
           <p class="hint empty-hint">No saved chats yet.</p>
         </div>
         <span class="cohort-badge" id="cohort-size">200-patient demo cohort</span>
-        <div class="status-pill">
-          <span class="dot"></span>
-          <span>100% free · client-side</span>
-        </div>
+        <div class="status-pill"><span class="dot"></span><span>Evidence-first demo</span></div>
       </aside>
       <div class="demo-main">
         <div class="patient-bar">
@@ -198,10 +261,10 @@
         </div>
         <p class="section-label">Quick actions</p>
         <div class="btn-row" id="quick-actions">
-          <button type="button" class="btn btn-primary-sm" data-q="Summarize this patient's history and current status.">Summarize patient</button>
-          <button type="button" class="btn btn-accent-sm" data-fr="1">Fall risk score</button>
-          <button type="button" class="btn btn-primary-sm" data-q="What medications is this patient currently on?">Medications</button>
-          <button type="button" class="btn btn-primary-sm" data-q="What are this patient's main diagnoses?">Diagnoses</button>
+          <button type="button" class="btn-primary-sm" data-q="Summarize this patient's history and current status.">Summarize patient</button>
+          <button type="button" class="btn-accent-sm" data-fr="1">Fall risk score</button>
+          <button type="button" class="btn-primary-sm" data-q="What medications is this patient currently on?">Medications</button>
+          <button type="button" class="btn-primary-sm" data-q="What are this patient's main diagnoses?">Diagnoses</button>
         </div>
         <div id="loading" class="loading hidden"><span class="spinner"></span><span>Checking achievability…</span></div>
         <form class="composer" id="ask-form">
@@ -218,31 +281,29 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#" class="logo">NEXTSTEP<span class="logo-dot">.AI</span></a>
-        <p class="footer-tagline">Clinical achievability gate. Know when not to answer — grounded in one trusted record.</p>
+        <p class="footer-tagline">Team 9 · Sonic Death Monkeys — EvidenceFirst CAIDF. Because the safest clinical answer is sometimes: “I need more information.”</p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
-          <h4>Product</h4>
-          <a href="#how">How it works</a>
-          <a href="#gate">The gate</a>
-          <a href="#demo">Live demo</a>
+          <h4>Deck</h4>
+          <a href="assets/EvidenceFirst_CAIDF.pptx">EvidenceFirst_CAIDF.pptx</a>
+          <a href="#solution">Solution slides</a>
+          <a href="#gate">Gate trace</a>
         </div>
         <div class="footer-col">
-          <h4>Data</h4>
-          <a href="data/README.md">Sample cohort</a>
-          <a href="https://github.com/abasu9/NextStep.ai" target="_blank" rel="noopener">GitHub</a>
+          <h4>Demo</h4>
+          <a href="#demo">Live patients</a>
+          <a href="https://github.com/abasu9/NextStep.ai">GitHub</a>
         </div>
         <div class="footer-col">
-          <h4>Verdicts</h4>
-          <a href="#demo">PROCEED</a>
-          <a href="#demo">GATHER</a>
-          <a href="#demo">ABSTAIN</a>
+          <h4>Team</h4>
+          <span class="footer-team">Luis Cisneros · Abhishek Basu · Lawrence Salud · Amy Y. Wang</span>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2026 NextStep.ai · Synthetic demo data only · Not for clinical use</p>
-      <div class="footer-status"><div class="status-dot"></div>Demo · 200 patients</div>
+      <p class="footer-copy">© 2026 NextStep.ai · Synthetic demo data only</p>
+      <div class="footer-status"><div class="status-dot"></div>PROCEED · GATHER · ABSTAIN</div>
     </div>
   </footer>
 

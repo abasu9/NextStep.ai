@@ -1,65 +1,111 @@
-# NextStep.ai — The Achievability Agent
+# NextStep.ai — Evidence-First Achievability Gate
 
-A clinical AI gate that decides whether a question *can* be answered before it answers.
+> **Source of truth:** [EvidenceFirst_CAIDF.pptx](EvidenceFirst_CAIDF.pptx) (CAIDF Hackathon · Team 9 · May 30, 2026)
 
-- **PROCEED** — the record contains the evidence needed; answer grounded in the record.
-- **GATHER** — in scope but evidence is missing or ambiguous; name what's needed.
-- **ABSTAIN** — out of scope or absent data; explain why instead of guessing.
+A clinical AI gate that decides whether a question *can* be answered **before** it answers.
 
-This repo is built **100% free**: static HTML/CSS/JS, no API keys, no paid hosting required. Patient data is **synthetic** (200 demo charts). Chats are stored in **localStorage** in the browser.
+| Verdict | When | Action |
+|---------|------|--------|
+| **PROCEED** | Evidence complete in the record | Grounded answer only from chart data |
+| **GATHER** | In scope but evidence missing / ambiguous | Name the gap · route to patient, PT, or clinician |
+| **ABSTAIN** | Off-distribution or unanswerable | Explain why · hand back to clinician |
 
-## Live site (GitHub Pages)
+**UIC Falls cohort** · **Llama 3.1 8B** + **mxbai-embed-large** · **On-prem** · **NIST 800-171**
 
-**URL:** https://abasu9.github.io/NextStep.ai/
+---
 
-If you see the wrong (black coaching) site, follow **[DEPLOY.md](DEPLOY.md)** — remove the **custom domain** under repo Settings → Pages (we do not use `nextstep.ai` for this demo).
+## Concept (from the deck)
 
-1. **Settings → Pages** → remove any custom domain → **Save**
-2. **Source** → **GitHub Actions**
-3. **Actions** → run **Deploy to GitHub Pages**
+![Judge–Act workflow](docs/assets/fig-6.png)
 
-### Sample data in this repo
+**Problem:** Time-strained providers struggle to navigate the EHR to find, synthesize, and act on data gaps essential for safe multidisciplinary care after a fall.
 
-**`docs/data/sample_patients.json` is committed to git** (~200 synthetic patients). It is **not real clinical data** — safe for public GitHub and Pages. See [docs/data/README.md](docs/data/README.md).
+**Solution:** *Gate the answer* — decide whether to answer, gather, or abstain before generating text.
 
-Or run locally:
+**Feasibility on one patient** (vague “fall risk” question):
+
+1. Question arrives — not answered directly  
+2. Anchor to **Morse**, **Hendrich II**, or **Timed Up and Go**  
+3. Check the record — required fields, `author_type`, **30-day window**  
+4. Return verdict — score **or** exact missing field, routed  
+
+**Impact:** Safer care · Cleaner reports and claims · One source of truth.
+
+![Knowledge graph by author_type](docs/assets/fig-14.png)
+
+*Auditability: every fact traceable to its discipline before the model speaks (deck).*
+
+---
+
+## Live demo
+
+**https://abasu9.github.io/NextStep.ai/**
+
+If you see the wrong (black coaching) site, follow **[DEPLOY.md](DEPLOY.md)** — remove any **custom domain** under repo **Settings → Pages**.
 
 ```bash
-cd docs
-python3 -m http.server 8080
-# open http://localhost:8080
+./run.sh
+# http://localhost:8080
 ```
 
-## Regenerate sample data
+- **200 synthetic patients** in [`docs/data/sample_patients.json`](docs/data/sample_patients.json) (not real PHI)  
+- Runs **100% in the browser** · no API keys  
+- Same **PROCEED / GATHER / ABSTAIN** logic as the deck  
+
+---
+
+## Deck & figures
+
+| Asset | Description |
+|-------|-------------|
+| [EvidenceFirst_CAIDF.pptx](EvidenceFirst_CAIDF.pptx) | Full hackathon deck (root) |
+| [docs/assets/EvidenceFirst_CAIDF.pptx](docs/assets/EvidenceFirst_CAIDF.pptx) | Same deck (served on GitHub Pages) |
+| [docs/assets/fig-6.png](docs/assets/fig-6.png) | Judge → Act |
+| [docs/assets/fig-10.png](docs/assets/fig-10.png) | Verdict distribution |
+| [docs/assets/fig-14.png](docs/assets/fig-14.png) | Knowledge graph |
+| [docs/assets/fig-16.png](docs/assets/fig-16.png) | Data + tools / stack |
+
+Regenerate web images from the deck:
 
 ```bash
-python3 scripts/generate_samples.py
+python3 scripts/extract_ppt_assets.py
 ```
 
-Writes `docs/data/sample_patients.json` (200 patients by default). Edit `COUNT` in the script to change size.
+---
+
+## Team
+
+**Team 9 — Sonic Death Monkeys**
+
+Luis Cisneros · Abhishek Basu · Lawrence Salud · Amy Y. Wang
+
+---
 
 ## Project layout
 
 | Path | Purpose |
 |------|---------|
-| `docs/` | Static site deployed to GitHub Pages |
-| `docs/js/engine.js` | Achievability gate + grounded answers (browser) |
+| `EvidenceFirst_CAIDF.pptx` | Main concept deck |
+| `docs/` | Static site (GitHub Pages) |
+| `docs/js/engine.js` | Client-side gate + grounded answers |
 | `docs/data/sample_patients.json` | 200 synthetic patients |
 | `scripts/generate_samples.py` | Cohort generator |
+| `scripts/extract_ppt_assets.py` | Pull figures from PPTX |
 | `.github/workflows/pages.yml` | Deploy workflow |
-| `app.py`, `server.py`, `logic.py`, `build_sample.py` | Optional local/Python tooling (not used on Pages) |
 
-## Optional local Python stack
+---
 
-For development with Streamlit or FastAPI + Ollama (not required for the public site):
+## Architecture (summary)
 
-```bash
-pip install -r requirements.txt
-./run.sh   # FastAPI on :8080
-streamlit run app.py
-```
+- **Concept gate** — embedding distance to calibrated clinical concepts; OOD → ABSTAIN  
+- **Answerability check** — escalate when the chart cannot support the question  
+- **Fall-risk instrument picker** — Morse / Hendrich II / TUG + per-field GATHER  
+- **Grounded answering** — record-only narrative when PROCEED  
 
-## Real UIC cohort
+Optional Python stack: `app.py`, `server.py`, `logic.py` (local / Ollama; not required for Pages).
 
-The UIC Falls data is not redistributed. To use your own cohort locally, run `build_sample.py` against your mounted dataset and replace `docs/data/sample_patients.json`.
+---
 
+## Real UIC data
+
+The UIC Falls cohort is **not redistributed**. For a private build, run `build_sample.py` against your mounted dataset and replace `docs/data/sample_patients.json`.
