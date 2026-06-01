@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -25,6 +25,12 @@ jobs:
 
       - name: Generate demo cohort
         run: python3 scripts/generate_samples.py
+
+      - name: Ensure no custom domain redirect
+        run: |
+          rm -f docs/CNAME
+          test ! -f docs/CNAME
+          grep -q "Achievability Agent" docs/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
