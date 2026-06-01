@@ -1,23 +1,36 @@
-# Fix: wrong site opening on GitHub Pages
+# Deploy NextStep.ai
 
-If you see the black **“AI Modernisation / executive coaching”** page, GitHub is still redirecting to **nextstep.ai** (hosted on OVH — not this repo).
+Static site lives in **`docs/`** — not Hugo, Jekyll, or a Node app.
 
-## One-time fix in GitHub (required)
+## GitHub Pages (recommended)
 
-1. Open **https://github.com/abasu9/NextStep.ai/settings/pages**
-2. Under **Custom domain**, click **Remove** (leave the field empty). Save.
-3. Under **Build and deployment → Source**, choose **GitHub Actions**.
-4. Open **https://github.com/abasu9/NextStep.ai/actions** → **Deploy to GitHub Pages** → **Run workflow** → Run.
-
-Wait 2–3 minutes.
-
-## Correct URL (no custom domain)
+Push to `main`. Workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publishes `docs/` to:
 
 **https://abasu9.github.io/NextStep.ai/**
 
-You should see the dark teal **Achievability Agent** page (hero: “Restraint prevents liability”) and a **Live demo** section with Patient ID 1–200.
+### Fix: wrong site on GitHub Pages
 
-Do **not** use `nextstep.ai` until you point that domain’s DNS at GitHub; it will keep showing the old OVH site.
+If you see the black **“AI Modernisation / executive coaching”** page, GitHub is still redirecting to **nextstep.ai** (OVH — not this repo).
+
+1. **https://github.com/abasu9/NextStep.ai/settings/pages**
+2. **Custom domain** → **Remove** (empty). Save.
+3. **Build and deployment → Source** → **GitHub Actions**.
+4. **Actions** → **Deploy to GitHub Pages** → **Run workflow**.
+
+Use **https://abasu9.github.io/NextStep.ai/** until DNS for `nextstep.ai` points at GitHub.
+
+## Netlify
+
+Netlify was failing with `hugo: command not found` because the UI was set for Hugo (`publish: public`).
+
+**Use [`netlify.toml`](netlify.toml)** in the repo, or set in Netlify → **Build & deploy**:
+
+| Setting | Value |
+|--------|--------|
+| Build command | `python3 scripts/generate_samples.py` (or empty) |
+| Publish directory | `docs` |
+
+Do **not** use `hugo` or `public`.
 
 ## Local preview
 

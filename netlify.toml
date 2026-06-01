@@ -1,0 +1,15 @@
+# NextStep.ai — static site (not Hugo). Publish docs/ as-is.
+[build]
+  publish = "docs"
+  command = "python3 scripts/generate_samples.py"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
