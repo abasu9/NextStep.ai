@@ -882,7 +882,11 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1.08fr;
   gap: 56px;
-  align-items: center;
+  align-items: start;
+}
+
+.gate-copy {
+  padding-top: 4px;
 }
 
 .gate-title {
@@ -897,34 +901,37 @@ nav {
 .gate-panel {
   background: var(--ink-card);
   border: 1px solid rgba(56, 189, 248, 0.12);
-  padding: 24px;
-  align-self: center;
+  padding: 28px 28px 24px;
+  align-self: start;
+  cursor: auto;
 }
 
 .gate-track {
-  --gate-rail-x: 14px;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 138px;
+  column-gap: 18px;
+  row-gap: 0;
   list-style: none;
-  margin: 0 0 22px;
+  margin: 0 0 24px;
   padding: 0;
   position: relative;
 }
 
-/* Single vertical rail — centered under dots */
+/* Rail spans all rows in column 1 — locked to dot centers */
 .gate-track::before {
   content: '';
-  position: absolute;
-  left: var(--gate-rail-x);
-  top: 20px;
-  bottom: 20px;
+  grid-column: 1;
+  grid-row: 1 / -1;
+  justify-self: center;
   width: 2px;
-  transform: translateX(-50%);
+  margin: 22px 0;
   background: linear-gradient(
     180deg,
     var(--green) 0%,
-    var(--green) 34%,
-    var(--ink-light) 34%,
-    var(--ink-light) 66%,
-    var(--red) 66%,
+    var(--green) 33%,
+    var(--ink-light) 33%,
+    var(--ink-light) 67%,
+    var(--red) 67%,
     var(--red) 100%
   );
   border-radius: 1px;
@@ -932,26 +939,21 @@ nav {
 }
 
 .gate-step {
-  display: grid;
-  grid-template-columns: 28px minmax(0, 1fr) 132px;
-  column-gap: 16px;
-  align-items: center;
-  min-height: 48px;
-  padding: 10px 0;
-  position: relative;
-  z-index: 1;
+  display: contents;
 }
 
 .gate-dot {
   grid-column: 1;
   justify-self: center;
+  align-self: center;
   width: 10px;
   height: 10px;
+  margin: 14px 0;
   border-radius: 50%;
   border: 2px solid var(--ink-light);
   background: var(--ink-card);
-  box-sizing: content-box;
-  flex-shrink: 0;
+  box-sizing: border-box;
+  z-index: 1;
 }
 
 .gate-step.is-pass .gate-dot {
@@ -975,33 +977,41 @@ nav {
 
 .gate-text {
   grid-column: 2;
+  align-self: center;
   font-size: 11px;
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--text);
   margin: 0;
-  align-self: center;
+  padding: 14px 0;
 }
 
 .gate-tag {
   grid-column: 3;
+  align-self: center;
+  justify-self: stretch;
   font-size: 9px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 7px 10px;
+  padding: 8px 6px;
   border: 1px solid rgba(56, 189, 248, 0.35);
   color: var(--accent-light);
   text-align: center;
   white-space: nowrap;
-  justify-self: end;
-  align-self: center;
-  width: 100%;
-  max-width: 132px;
   box-sizing: border-box;
+  margin: 14px 0;
 }
 
 .gate-step.is-block .gate-tag {
   border-color: rgba(248, 113, 113, 0.45);
   color: var(--red);
+}
+
+.gate-panel .verdict-meter {
+  margin-top: 0;
+  padding: 20px 0 0;
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(56, 189, 248, 0.1);
 }
 
 .meter-high {
@@ -1085,13 +1095,6 @@ nav {
 
 .stack-list li:last-child {
   border-bottom: none;
-}
-
-.verdict-meter {
-  margin-top: 24px;
-  background: var(--ink-card);
-  padding: 22px;
-  border: 1px solid rgba(56, 189, 248, 0.1);
 }
 
 .meter-label {
@@ -1692,34 +1695,46 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .gate-track {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
   .gate-track::before {
-    top: 16px;
-    bottom: 16px;
+    display: none;
   }
 
   .gate-step {
-    grid-template-columns: 28px 1fr;
-    grid-template-areas:
-      'dot text'
-      '. tag';
-    row-gap: 6px;
-    padding: 12px 0;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    column-gap: 14px;
+    row-gap: 8px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .gate-step:last-child {
+    border-bottom: none;
   }
 
   .gate-dot {
-    grid-area: dot;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: start;
+    margin-top: 4px;
   }
 
   .gate-text {
-    grid-area: text;
+    grid-column: 2;
+    padding: 0;
   }
 
   .gate-tag {
-    grid-area: tag;
-    grid-column: auto;
+    grid-column: 2;
     justify-self: start;
-    max-width: none;
     width: auto;
+    margin: 0 0 4px;
   }
 
   .evrow {
